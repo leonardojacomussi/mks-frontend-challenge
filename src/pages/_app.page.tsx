@@ -1,5 +1,5 @@
-import { FC } from "react";
 import Head from "next/head";
+import { FC, useRef } from "react";
 import theme from "@/styles/theme";
 import muiTheme from "@/styles/muiTheme";
 import type { AppProps } from "next/app";
@@ -8,7 +8,9 @@ import { SnackbarProvider } from "notistack";
 import { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../utils/createEmotionCache";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider as SCThemeProvider } from "styled-components";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -21,6 +23,12 @@ interface MyAppProps extends AppProps {
 const App: FC<MyAppProps> = ({
   Component, pageProps, emotionCache = clientSideEmotionCache
 }): JSX.Element => {
+  const queryClientRef = useRef<QueryClient>();
+
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  };
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -45,14 +53,17 @@ const App: FC<MyAppProps> = ({
         {/* <meta property="og:image" content="" /> */}
         {/* [END] Open Graph Protocol */}
       </Head>
-      <MuiThemeProvider theme={muiTheme}>
-        <SCThemeProvider theme={theme}>
-          <SnackbarProvider maxSnack={5} style={{ fontSize: "1.6rem" }}>
-            <GlobalStyle />
-            <Component {...pageProps} />
-          </SnackbarProvider>
-        </SCThemeProvider>
-      </MuiThemeProvider>
+      <QueryClientProvider client={queryClientRef.current}>
+        <MuiThemeProvider theme={muiTheme}>
+          <SCThemeProvider theme={theme}>
+            <SnackbarProvider maxSnack={5} style={{ fontSize: "1.6rem" }}>
+              <GlobalStyle />
+              <Component {...pageProps} />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </SnackbarProvider>
+          </SCThemeProvider>
+        </MuiThemeProvider>
+      </QueryClientProvider>
     </CacheProvider>
   );
 };
