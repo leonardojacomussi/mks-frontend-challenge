@@ -15,7 +15,7 @@ const theme = {
     blue: "#0F52BA",
   },
   border: {
-    "radius": "1rem",
+    "radius": "0.8rem",
   },
   breakpoints: {
     "sm": "576px",

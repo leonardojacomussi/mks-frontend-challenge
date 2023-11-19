@@ -7,6 +7,4 @@ export const Container = styled.div<HTMLAttributes<HTMLDivElement>>`
   display: flex;
   gap: 5rem;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
