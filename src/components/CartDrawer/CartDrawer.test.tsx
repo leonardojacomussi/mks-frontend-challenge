@@ -1,8 +1,8 @@
 import CartDrawer from ".";
 import "jest-styled-components";
 import products from "@/mock/products";
+import { screen, render } from "@/utils/tests";
 import { CartContext } from "@/contexts/CartContext";
-import { screen, render, fireEvent } from "@/utils/tests";
 
 describe("CartDrawer", () => {
   const updateCart = jest.fn();
