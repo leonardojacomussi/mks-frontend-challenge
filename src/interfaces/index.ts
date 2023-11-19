@@ -11,7 +11,6 @@ export type Product = {
 
 export interface ProductOnCart extends Product {
   quantity: number,
-  total: number,
 };
 
 export type Cart = {

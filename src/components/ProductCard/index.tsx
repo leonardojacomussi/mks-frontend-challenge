@@ -30,7 +30,7 @@ const ProductCard: FC<ProductCardProps> = ({
     const options = document.getElementsByClassName("price");
     for (let index = 0; index < options.length; ++index) {
       options[index].innerHTML = options[index].innerHTML.replace(/\&nbsp;/g, "");
-    }
+    };
   }, []);
 
   return (

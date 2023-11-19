@@ -10,10 +10,11 @@ import { ProductOnCart } from "@/interfaces";
 import IconButton from "@mui/material/IconButton";
 import useCartContext from "@/hooks/useCartContext";
 import useFirstRender from "@/hooks/useFirstRender";
-import { useStyles, Header, EmptyCart, List } from "./styles";
 import { useTheme, DefaultTheme } from "styled-components";
 import ProductListItem from "@/components/ProductListItem";
+import { useStyles, Header, EmptyCart, List, Footer } from "./styles";
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import { numberToCurrency } from "@/utils/tools";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -41,7 +42,6 @@ const CartDrawer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
   const [href, setHref] = useState<string>("");
   const { classes } = useStyles({ SCTheme: theme });
   const { openModal, handleCloseModal, cart } = useCartContext();
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (window) setHref(window.location.href);
@@ -55,6 +55,13 @@ const CartDrawer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
     };
     handleCloseModal();
   };
+
+  useEffect(() =>  {
+    const options = document.getElementsByClassName("price");
+    for (let index = 0; index < options.length; ++index) {
+      options[index].innerHTML = options[index].innerHTML.replace(/\&nbsp;/g, "");
+    };
+  }, []);
 
   if (firstRender) return <></>;
 
@@ -74,17 +81,26 @@ const CartDrawer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
       </Header>
       {
         openModal && cart.items.length > 0 &&
-        <List
-          variants={container}
-          initial="hidden"
-          animate="visible"
-        >
-          {
-            cart.items.map((product: ProductOnCart, index: number) => (
-              <ProductListItem key={product.id} product={product} variants={item} />
-            ))
-          }
-        </List>
+        <>
+          <List
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
+            {
+              cart.items.map((product: ProductOnCart, index: number) => (
+                <ProductListItem key={product.id} product={product} variants={item} />
+              ))
+            }
+          </List>
+          <Footer>
+            <div className="total">
+              <span>Total</span>
+              <span className="price">{numberToCurrency(cart.total)}</span>
+            </div>
+            <button>Finalizar Compra</button>
+          </Footer>
+        </>
       }
       {
         cart.items.length === 0 && (

@@ -9,6 +9,7 @@ export const useStyles = makeStyles<{ SCTheme: DefaultTheme }>()((theme, { SCThe
 			width: "100%",
 			padding: "3.6rem 2.2rem 4.7rem 4.7rem",
 			flexShrink: 0,
+			position: "relative",
 			"& .MuiDrawer-paper": {
 				background: `${SCTheme.colors.blue} !important`,
 				color: SCTheme.colors.white,
@@ -63,9 +64,52 @@ export const List = styled(motion.ul)<HTMLMotionProps<"li">>`
 	padding-left: 1rem;
 	padding-right: 1rem;
 
+	max-height: calc(100vh - 10.16rem - 18.94rem);
+	overflow-y: scroll;
+
 	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
 		padding-left: 4.7rem;
 		padding-right: 0;
+	};
+`;
+
+export const Footer = styled.footer<HTMLAttributes<HTMLElement>>`
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	.total {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		height: auto;
+		padding: 2.2rem 2.2rem 4.2rem 2.2rem;
+
+		font-size: 2.8rem;
+		font-weight: 700;
+	};
+
+	button {
+		border: none;
+		width: 100%;
+		height: 9.7rem;
+		flex-shrink: 0;
+
+		text-align: center;
+		font-size: 2.8rem;
+		font-weight: 700;
+
+		background-color: ${({ theme }) => theme.colors.black};
+	};
+
+	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+		.total {
+			padding: 2.2rem 4.7rem 3.6rem 4.7rem;
+		};
 	};
 `;
 

@@ -21,7 +21,12 @@ export const getProducts = async (): Promise<Array<Product> | null> => {
     );
     if (data.hasOwnProperty("products") && Array.isArray(data.products)) {
       data.products.map((product: Product) => {
-        products.push({ ...product, createdAt: new Date(product.createdAt), updatedAt: new Date(product.updatedAt) });
+        products.push({
+          ...product,
+          createdAt: new Date(product.createdAt),
+          updatedAt: new Date(product.updatedAt),
+          price: typeof product.price === "string" ? parseFloat(product.price) : product.price
+        });
       });
     } else {
       return null;

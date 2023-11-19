@@ -24,8 +24,8 @@ const getStorageValue = (key: string, defaultValue: Cart = defaultCart): Cart =>
     const saved = localStorage.getItem(key);
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (parsed && parsed.cupom && parsed.cupom.validity) {
-        parsed.cupom.validity = new Date(parsed.cupom.validity);
+      if (parsed && parsed.total && typeof parsed.total === "string") {
+        parsed.total = parseFloat(parsed.total);
       }
       return parsed as Cart
     } else {
@@ -67,10 +67,9 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({ children }) =
     if (action === "add") {
       if (itemOnCart) {
         itemOnCart.quantity += 1;
-        itemOnCart.total = itemOnCart.quantity * itemOnCart.price;
         setCart(prev => ({
           ...prev,
-          total: prev.total + itemOnCart.total,
+          total: prev.total + itemOnCart.price,
         }));
       } else {
         setCart(prev => ({
@@ -84,7 +83,6 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({ children }) =
       if (itemOnCart) {
         if (itemOnCart.quantity > 1) {
           itemOnCart.quantity -= 1;
-          itemOnCart.total = itemOnCart.quantity * itemOnCart.price;
           setCart(prev => ({
             items: prev.items.map((item) => item.id === value.id ? itemOnCart : item),
             total: prev.total - itemOnCart.price,
@@ -100,7 +98,7 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({ children }) =
     } else if (action === "clear") {
       if (itemOnCart) {
         setCart(prev => ({
-          total: prev.total - itemOnCart.total,
+          total: prev.total - (itemOnCart.quantity * itemOnCart.price),
           items: prev.items.filter((item) => item.id !== value.id),
         }));
       } else {
