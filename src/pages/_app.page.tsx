@@ -7,6 +7,7 @@ import GlobalStyle from "@/styles/Global";
 import { SnackbarProvider } from "notistack";
 import { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
+import { CartContextProvider } from "@/contexts/CartContext";
 import createEmotionCache from "../utils/createEmotionCache";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider as SCThemeProvider } from "styled-components";
@@ -57,8 +58,10 @@ const App: FC<MyAppProps> = ({
         <MuiThemeProvider theme={muiTheme}>
           <SCThemeProvider theme={theme}>
             <SnackbarProvider maxSnack={5} style={{ fontSize: "1.6rem" }}>
-              <GlobalStyle />
-              <Component {...pageProps} />
+              <CartContextProvider>
+                <GlobalStyle />
+                <Component {...pageProps} />
+              </CartContextProvider>
               <ReactQueryDevtools initialIsOpen={false} />
             </SnackbarProvider>
           </SCThemeProvider>

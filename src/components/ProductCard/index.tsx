@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Product } from "@/interfaces";
 import { numberToCurrency } from "@/utils/tools";
 import BagIcon from "../../../public/assets/BagIcon";
+import useCartContext from "@/hooks/useCartContext";
 
 interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   product: Product;
@@ -23,6 +24,7 @@ const ProductCard: FC<ProductCardProps> = ({
   product,
   ...props
 }): JSX.Element => {
+  const { updateCart } = useCartContext();
 
   useEffect(() =>  {
     var options = document.getElementsByClassName("price")
@@ -49,7 +51,7 @@ const ProductCard: FC<ProductCardProps> = ({
       <CardDescription>
         <p title={product.description}>{product.description}</p>
       </CardDescription>
-      <CardAction>
+      <CardAction onClick={() => updateCart(product, "add")}>
         <BagIcon/>
         COMPRAR
       </CardAction>
