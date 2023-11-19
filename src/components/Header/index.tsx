@@ -13,12 +13,12 @@ const Header: FC<HTMLAttributes<HTMLElement>> = (props): JSX.Element => {
   const firstRenter = useFirstRender();
 
   return (
-    <Container {...props}>
+    <Container data-testid="header" {...props}>
       <h1>
         MKS <span>Sistemas</span>
       </h1>
       <IconButton onClick={handleCloseModal}>
-        <CartIcon />{" "} {firstRenter ? 0 : cart.items.reduce((acc, item) => acc + item.quantity, 0)}
+        <CartIcon data-testid="cart-icon" />{" "} {firstRenter ? 0 : cart.items.reduce((acc, item) => acc + item.quantity, 0)}
       </IconButton>
     </Container>
   );
