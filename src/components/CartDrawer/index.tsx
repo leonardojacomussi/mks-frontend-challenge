@@ -69,6 +69,7 @@ const CartDrawer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
     <Drawer
       variant="temporary"
       anchor="right"
+      data-testid="drawer"
       open={openModal}
       onClose={handleDrawerCloseOutside}
       classes={{ root: classes.drawer }}
