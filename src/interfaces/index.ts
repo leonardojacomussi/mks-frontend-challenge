@@ -14,7 +14,6 @@ export interface ProductOnCart extends Product {
   total: number,
 };
 
-
 export type Cart = {
   items: Array<ProductOnCart>,
   total: number,
@@ -26,6 +25,6 @@ export type CartContextType = {
   handleCloseModal: () => void,
   updateCart: (
     value: Product,
-    action: "add" | "remove"
+    action: "add" | "remove" | "clear"
   ) => void
 };

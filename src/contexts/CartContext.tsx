@@ -59,7 +59,7 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({ children }) =
 
   const updateCart = (
     value: Product,
-    action: "add" | "remove",
+    action: "add" | "remove" | "clear",
   ): void => {
     // check if item is already on cart
     const itemOnCart: ProductOnCart | undefined = cart.items.find((item) => item.id === value.id);
@@ -78,8 +78,8 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({ children }) =
           total: prev.total + value.price,
           items: [...prev.items, { ...value, quantity: 1, total: value.price }],
         }));
+        enqueueSnackbar("Item adicionado ao carrinho", { variant: "success" });
       };
-      enqueueSnackbar("Item adicionado ao carrinho", { variant: "success" });
     } else if (action === "remove") {
       if (itemOnCart) {
         if (itemOnCart.quantity > 1) {
@@ -94,8 +94,21 @@ export const CartContextProvider: FC<{ children: ReactNode }> = ({ children }) =
             total: prev.total - itemOnCart.price,
             items: prev.items.filter((item) => item.id !== value.id),
           }));
+          enqueueSnackbar("Item removido do carrinho", { variant: "success" });
         };
       };
+    } else if (action === "clear") {
+      if (itemOnCart) {
+        setCart(prev => ({
+          total: prev.total - itemOnCart.total,
+          items: prev.items.filter((item) => item.id !== value.id),
+        }));
+      } else {
+        setCart(prev => ({
+          total: prev.total - value.price,
+          items: prev.items.filter((item) => item.id !== value.id),
+        }));
+      }
       enqueueSnackbar("Item removido do carrinho", { variant: "success" });
     };
   };

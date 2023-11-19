@@ -13,8 +13,8 @@ import {
 import Image from "next/image";
 import { Product } from "@/interfaces";
 import { numberToCurrency } from "@/utils/tools";
-import BagIcon from "../../../public/assets/BagIcon";
 import useCartContext from "@/hooks/useCartContext";
+import BagIcon from "../../../public/assets/BagIcon";
 
 interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
   product: Product;

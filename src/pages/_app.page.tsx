@@ -7,6 +7,7 @@ import GlobalStyle from "@/styles/Global";
 import { SnackbarProvider } from "notistack";
 import { EmotionCache } from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
+import CartDrawer from "@/components/CartDrawer";
 import { CartContextProvider } from "@/contexts/CartContext";
 import createEmotionCache from "../utils/createEmotionCache";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -60,6 +61,7 @@ const App: FC<MyAppProps> = ({
             <SnackbarProvider maxSnack={5} style={{ fontSize: "1.6rem" }}>
               <CartContextProvider>
                 <GlobalStyle />
+                <CartDrawer />
                 <Component {...pageProps} />
               </CartContextProvider>
               <ReactQueryDevtools initialIsOpen={false} />
