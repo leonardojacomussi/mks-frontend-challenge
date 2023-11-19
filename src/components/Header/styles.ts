@@ -4,8 +4,9 @@ import { HTMLAttributes } from "react";
 export const Container = styled.header<HTMLAttributes<HTMLElement>>`
   width: 100%;
   height: 10.1rem;
-  flex-shrink: 0;
+
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;

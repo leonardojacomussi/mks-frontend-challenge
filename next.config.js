@@ -7,7 +7,7 @@ const nextConfig = {
   images: {
     dangerouslyAllowSVG: true,
     formats: ["image/avif", "image/webp"],
-    domains: ["https://mks-sistemas.nyc3.digitaloceanspaces.com"],
+    domains: ["mks-sistemas.nyc3.digitaloceanspaces.com"],
   },
   pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
 }
