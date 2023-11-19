@@ -34,7 +34,7 @@ const ProductCard: FC<ProductCardProps> = ({
   }, []);
 
   return (
-    <Card {...props}>
+    <Card data-testid="product-card" {...props}>
       <CardImage>
         <Image
           width={100}
