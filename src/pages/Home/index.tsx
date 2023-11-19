@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import { Container } from "./styles";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import useProducts from "@/hooks/useProducts";
 
 const Home: NextPage = (): JSX.Element => {
@@ -18,6 +19,7 @@ const Home: NextPage = (): JSX.Element => {
           ))}
         </ul>
       )}
+      <Footer />
     </Container>
   );
 };
