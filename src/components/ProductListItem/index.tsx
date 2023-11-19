@@ -34,17 +34,25 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }): JSX.Element => 
   }, []);
 
   return (
-    <Container>
+    <Container data-testid="product-list-item">
       <CardImage>
         <Image src={product.photo} width={80} height={80} alt={product.name} />
       </CardImage>
       <CardTitle>{product.name}</CardTitle>
       <AddOrRemoveButton>
-        <button onClick={() => updateCart(product, "remove")} title="Adicionar um item ao carrinho">
+        <button
+          data-testid="product-list-item-btn-remove"
+          onClick={() => updateCart(product, "remove")}
+          title="Adicionar um item ao carrinho"
+        >
           <RemoveIcon/>
         </button>
         <span>{product.quantity}</span>
-        <button onClick={() => updateCart(product, "add")} title="Remover um item ao carrinho">
+        <button
+          data-testid="product-list-item-btn-add"
+          onClick={() => updateCart(product, "add")}
+          title="Remover um item ao carrinho"
+        >
           <AddIcon />
         </button>
       </AddOrRemoveButton>
