@@ -14,7 +14,7 @@ import BagIcon from "../../../public/assets/BagIcon";
 
 const ProductCardSkeleton: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
   return (
-    <Card {...props}>
+    <Card data-testid="product-card-skeleton" {...props}>
       <CardImage>
         <Skeleton variant="rectangular" width={200} height={138} />
       </CardImage>
