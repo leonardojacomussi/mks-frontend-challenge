@@ -4,9 +4,9 @@ import {
 } from "react";
 import { Container } from "./styles";
 
-const Footer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
+const Footer: FC<HTMLAttributes<HTMLElement>> = (props): JSX.Element => {
   return (
-    <Container {...props}>
+    <Container data-testid="footer" {...props}>
       <p>MKS sistemas © Todos os direitos reservados</p>
     </Container>
   );
