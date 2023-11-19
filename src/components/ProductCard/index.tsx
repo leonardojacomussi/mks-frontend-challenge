@@ -1,7 +1,6 @@
 import {
   FC,
   useEffect,
-  HTMLAttributes,
 } from "react";
 import {
   Card,
@@ -12,11 +11,12 @@ import {
 } from "./styles";
 import Image from "next/image";
 import { Product } from "@/interfaces";
+import { HTMLMotionProps } from "framer-motion";
 import { numberToCurrency } from "@/utils/tools";
 import useCartContext from "@/hooks/useCartContext";
 import BagIcon from "../../../public/assets/BagIcon";
 
-interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
+interface ProductCardProps extends HTMLMotionProps<"li"> {
   product: Product;
 };
 
@@ -27,7 +27,7 @@ const ProductCard: FC<ProductCardProps> = ({
   const { updateCart } = useCartContext();
 
   useEffect(() =>  {
-    var options = document.getElementsByClassName("price")
+    const options = document.getElementsByClassName("price");
     for (let index = 0; index < options.length; ++index) {
       options[index].innerHTML = options[index].innerHTML.replace(/\&nbsp;/g, "");
     }

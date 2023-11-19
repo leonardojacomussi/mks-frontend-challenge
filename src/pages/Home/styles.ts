@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { HTMLAttributes } from "react";
+import { motion } from "framer-motion";
 
 export const Container = styled.div<HTMLAttributes<HTMLDivElement>>`
   width: 100%;
@@ -11,7 +12,7 @@ export const Container = styled.div<HTMLAttributes<HTMLDivElement>>`
   justify-content: space-between;
 `;
 
-export const Main = styled.main<HTMLAttributes<HTMLElement>>`
+export const Main = styled(motion.ul)<HTMLAttributes<HTMLUListElement>>`
   width: 100%;
   height: 100%;
   min-height: calc(100vh - 10.1rem - 3.4rem);

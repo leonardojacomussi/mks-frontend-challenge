@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react";
 import { makeStyles } from "tss-react/mui";
+import { motion, HTMLMotionProps } from "framer-motion";
 import styled, { DefaultTheme } from "styled-components";
 
 export const useStyles = makeStyles<{ SCTheme: DefaultTheme }>()((theme, { SCTheme }) => {
@@ -18,20 +19,6 @@ export const useStyles = makeStyles<{ SCTheme: DefaultTheme }>()((theme, { SCThe
 				"& .MuiDrawer-paper": {
 					width: "486px !important",
 				},
-			},
-		},
-		list: {
-			display: "flex",
-			flexDirection: "column",
-			width: "100%",
-			height: "auto",
-			rowGap: "2.3rem",
-			paddingTop: "7rem",
-			paddingLeft: "1rem",
-			paddingRight: "1rem",
-			"@media (min-width: 576px)": {
-				paddingLeft: "4.7rem",
-				paddingRight: 0,
 			},
 		},
 	};
@@ -63,6 +50,22 @@ export const Header = styled.header<HTMLAttributes<HTMLElement>>`
 
 	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
 		padding: 3.6rem 2.2rem 0 4.7rem;
+	};
+`;
+
+export const List = styled(motion.ul)<HTMLMotionProps<"li">>`
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: auto;
+	row-gap: 2.3rem;
+	padding-top: 7rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+		padding-left: 4.7rem;
+		padding-right: 0;
 	};
 `;
 

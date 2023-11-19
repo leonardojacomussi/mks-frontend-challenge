@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { HTMLMotionProps, motion } from "framer-motion";
 import { HTMLAttributes, ButtonHTMLAttributes } from "react";
 
-export const Card = styled.div<HTMLAttributes<HTMLDivElement>>`
+export const Card = styled(motion.li)<HTMLMotionProps<"li">>`
   width: 22rem;
   height: 28.5rem;
   position: relative;

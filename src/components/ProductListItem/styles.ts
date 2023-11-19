@@ -1,9 +1,9 @@
 import { HTMLAttributes } from "react";
 import styled from "styled-components";
 import { IconButton } from "@mui/material";
-import ListItem from "@mui/material/ListItem";
+import { HTMLMotionProps, motion } from "framer-motion";
 
-export const Container = styled(ListItem)`
+export const Container = styled(motion.li)<HTMLMotionProps<"li">>`
   width: 100%;
   max-width: 37.9rem;
   height: auto;
@@ -106,6 +106,6 @@ export const RemoveButton = styled(IconButton)`
   width: 1.8rem;
   height: 1.8rem;
   position: absolute;
-  top: -3.7rem;
-  right: -2.2rem;
+  top: -2.9rem;
+  right: -.8rem;
 `;

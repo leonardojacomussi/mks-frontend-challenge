@@ -1,7 +1,6 @@
 import {
   FC,
   useEffect,
-  HTMLAttributes,
 } from "react";
 import {
   Container,
@@ -14,12 +13,13 @@ import {
 import Image from "next/image";
 import { ProductOnCart } from "@/interfaces";
 import AddIcon from "@mui/icons-material/Add";
+import { HTMLMotionProps } from "framer-motion";
 import { numberToCurrency } from "@/utils/tools";
 import useCartContext from "@/hooks/useCartContext";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Close from "../../../public/assets/Close.svg";
 
-interface ProductListItemProps extends HTMLAttributes<HTMLLIElement> {
+interface ProductListItemProps extends HTMLMotionProps<"li"> {
   product: ProductOnCart;
 };
 
@@ -27,10 +27,10 @@ const ProductListItem: FC<ProductListItemProps> = ({ product }): JSX.Element => 
   const { updateCart } = useCartContext();
 
   useEffect(() =>  {
-    var options = document.getElementsByClassName("price")
+    const options = document.getElementsByClassName("price");
     for (let index = 0; index < options.length; ++index) {
       options[index].innerHTML = options[index].innerHTML.replace(/\&nbsp;/g, "");
-    }
+    };
   }, []);
 
   return (
