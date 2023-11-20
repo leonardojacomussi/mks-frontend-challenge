@@ -52,7 +52,7 @@ const App: FC<MyAppProps> = ({
         <meta property="og:type" content="website" />
         <meta property="og:title" content="MKS Frontend Challenge" />
         <meta property="og:description" content="MKS Frontend Challenge - Desafio técnico para aplicação na vaga de desenvolvedor Frontend" />
-        {/* <meta property="og:image" content="" /> */}
+        <meta property="og:image" content="https://raw.githubusercontent.com/leonardojacomussi/mks-frontend-challenge/main/.github/preview/desktop.png" />
         {/* [END] Open Graph Protocol */}
       </Head>
       <QueryClientProvider client={queryClientRef.current}>
