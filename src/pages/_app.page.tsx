@@ -58,7 +58,7 @@ const App: FC<MyAppProps> = ({
       <QueryClientProvider client={queryClientRef.current}>
         <MuiThemeProvider theme={muiTheme}>
           <SCThemeProvider theme={theme}>
-            <SnackbarProvider maxSnack={5} style={{ fontSize: "1.6rem" }}>
+            <SnackbarProvider maxSnack={1} autoHideDuration={3000} style={{ fontSize: "1.6rem" }}>
               <CartContextProvider>
                 <GlobalStyle />
                 <CartDrawer />
