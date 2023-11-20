@@ -65,7 +65,12 @@ export const List = styled(motion.ul)<HTMLMotionProps<"li">>`
 	padding-right: 1rem;
 
 	max-height: calc(100vh - 10.16rem - 18.94rem);
-	overflow-y: scroll;
+	overflow-y: auto;
+
+	/* Track */
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.blue};
+  };
 
 	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
 		padding-left: 4.7rem;
