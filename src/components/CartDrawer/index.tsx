@@ -39,8 +39,8 @@ const item = {
 const CartDrawer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
   const firstRender = useFirstRender();
   const theme: DefaultTheme = useTheme();
-  const [heightWindow, setHeightWindow] = useState<number>(0);
   const { classes } = useStyles({ SCTheme: theme });
+  const [heightWindow, setHeightWindow] = useState<number>(0);
   const { openModal, handleCloseModal, cart } = useCartContext();
 
   useEffect(() => {
