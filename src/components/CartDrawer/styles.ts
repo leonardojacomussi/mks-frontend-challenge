@@ -54,17 +54,19 @@ export const Header = styled.header<HTMLAttributes<HTMLElement>>`
 	};
 `;
 
-export const List = styled(motion.ul)<HTMLMotionProps<"li">>`
+interface ListProps extends HTMLMotionProps<"li"> {
+	$height: number;
+};
+
+export const List = styled(motion.ul)<ListProps>`
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	height: auto;
 	row-gap: 2.3rem;
-	padding-top: 7rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	padding: 7rem 1rem 3rem 1rem;
 
-	max-height: calc(100vh - 10.16rem - 18.94rem);
+	max-height: ${({ $height }) => `calc(${$height}px - 10.16rem - 18.94rem)`};
 	overflow-y: auto;
 
 	/* Track */
@@ -73,8 +75,7 @@ export const List = styled(motion.ul)<HTMLMotionProps<"li">>`
   };
 
 	@media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
-		padding-left: 4.7rem;
-		padding-right: 0;
+		padding: 7rem 0 3rem 4.7rem;
 	};
 `;
 

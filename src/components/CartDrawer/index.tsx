@@ -39,13 +39,24 @@ const item = {
 const CartDrawer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
   const firstRender = useFirstRender();
   const theme: DefaultTheme = useTheme();
-  const [href, setHref] = useState<string>("");
+  const [heightWindow, setHeightWindow] = useState<number>(0);
   const { classes } = useStyles({ SCTheme: theme });
   const { openModal, handleCloseModal, cart } = useCartContext();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
-    if (window) setHref(window.location.href);
-  });
+    const handleHeightWindow = () => {
+      setHeightWindow(window.innerHeight);
+    };
+
+    if (window) {
+      setHeightWindow(window.innerHeight);
+      window.addEventListener("resize", handleHeightWindow);
+    };
+
+    () => {
+      window.removeEventListener("resize", handleHeightWindow);
+    };
+  }, []);
 
   const handleDrawerCloseOutside = (
     event: MouseEvent | KeyboardEvent | Event | {}, reason: string
@@ -87,6 +98,7 @@ const CartDrawer: FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.Element => {
             variants={container}
             initial="hidden"
             animate="visible"
+            $height={heightWindow}
           >
             {
               cart.items.map((product: ProductOnCart, index: number) => (
